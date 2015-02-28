@@ -9,5 +9,4 @@ module GameOfLife
   autoload :Board,      'game_of_life/board'
   autoload :Cell,       'game_of_life/cell'
   autoload :CellMarker, 'game_of_life/cell_marker'
-  autoload :Gui,        'game_of_life/gui'
 end
