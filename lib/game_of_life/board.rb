@@ -6,17 +6,6 @@ module GameOfLife
       load(Array(input))
     end
 
-    def at(x, y)
-      return nil if x < 0 || x >= width
-      return nil if y < 0 || y >= height
-
-      cells[y][x]
-    end
-
-    def to_a
-      dump
-    end
-
     def width
       return 0 unless cells.first.is_a?(Array)
 
@@ -27,6 +16,13 @@ module GameOfLife
       cells.length
     end
 
+    def at(x, y)
+      return nil if x < 0 || x >= width
+      return nil if y < 0 || y >= height
+
+      cells[y][x]
+    end
+
     def tick!
       cells.each_with_index do |row, y|
         row.each_with_index do |cell, x|
@@ -34,11 +30,21 @@ module GameOfLife
         end
       end
 
+      cells.flatten.each(&:mutate!)
+    end
+
+    def to_a
+      output = []
+
       cells.each do |row|
+        new_row = []
         row.each do |cell|
-          cell.mutate!
+          new_row << (cell.alive? ? 1 : 0)
         end
+        output << new_row
       end
+
+      output
     end
 
     private
@@ -52,20 +58,6 @@ module GameOfLife
         end
         @cells << new_row
       end
-    end
-
-    def dump
-      output = []
-
-      cells.each do |row|
-        new_row = []
-        row.each do |cell|
-          new_row << (cell.alive? ? 1 : 0)
-        end
-        output << new_row
-      end
-
-      output
     end
   end
 end

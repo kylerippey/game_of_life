@@ -49,10 +49,10 @@ module GameOfLife
 
     private
 
+    attr_reader :alive, :mark
+
     def unmark!
       @mark = nil
     end
-
-    attr_reader :alive, :mark
   end
 end
