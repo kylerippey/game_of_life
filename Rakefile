@@ -13,8 +13,4 @@ Rake::TestTask.new(:test) do |t|
   t.verbose = false
 end
 
-task :gui do
-  ruby File.expand_path('../lib/gui.rb', __FILE__)
-end
-
 task default: :test
