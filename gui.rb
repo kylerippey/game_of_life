@@ -17,7 +17,7 @@ class GameOfLifeGui < Gosu::Window
     @game = GameOfLife::Game.new(width: width / SCALE_FACTOR, height: height / SCALE_FACTOR)
   end
 
-  def button_dwon(id)
+  def button_down(id)
     close if id == Gosu::KbEscape
   end
 
